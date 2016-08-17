@@ -1,0 +1,81 @@
+<section id="content">
+  <section class="vbox bg-white">
+    <header class="header b-b b-light hidden-print">
+      <button href="#" class="btn btn-sm btn-info pull-right" onClick="printInfo('content');">Print</button>
+      <p>Invoice</p>
+    </header>
+    <section class="scrollable wrapper">
+      <i class="fa fa-home fa fa-3x"></i>
+      <div class="row">
+        <div class="col-xs-6">
+          <h4><%= @given_installment.town.name if @given_installment.town.present?%></h4>
+          <p><%= @given_installment.town.address.address_1+" "+ @given_installment.town.address.address_2%> <br>
+            <%=@given_installment.town.address.zip_code+", "+ @given_installment.town.address.city%> <br>
+            <%= @given_installment.town.address.country%>
+          </p>
+          <p>
+            Telephone:  <%=@given_installment.town.address.phone_number1%><br>
+            Mobile:  <%=@given_installment.town.address.secondary_phone_number%>
+          </p>
+        </div>
+        <div class="col-xs-6 text-right">
+          <p class="h4">#REF-<%=@given_installment.land_master.id.to_s+"-"+ @given_installment.town.id.to_s%></p>
+          <h5><%=@given_installment.created_at.strftime("%d-%m-%Y %H:%M %p")%></h5>
+        </div>
+      </div>
+      <div class="well m-t">
+        <div class="row">
+          <div class="col-xs-6">
+            <strong>TO:</strong>
+            <h4><%=@given_installment.land_master.name%></h4>
+            <p>
+              <%=@given_installment.land_master.address.address_1%><br>
+              <%=@given_installment.land_master.address.address_2+', '+ @given_installment.land_master.address.city+' '+ @given_installment.land_master.address.zip_code %> <br>
+              <%=@given_installment.land_master.address.country%><br>
+              Phone: <%=@given_installment.land_master.address.phone_number1%><br>
+              Phone2: <%=@given_installment.land_master.address.secondary_phone_number%>
+            </p>
+          </div>
+        </div>
+      </div>
+      <p class="m-t m-b">Submit date: <strong><%=@given_installment.submit_date.strftime("%d-%m-%Y %H:%M %p")%></strong><br>
+        Submission status: <span class="label bg-success">GIVEN</span><br>
+        Submission ID: <strong><%=@given_installment.id%></strong>
+      </p>
+      <div class="line"></div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th width="140">AMOUNT</th>
+          <th width="90">TOTAL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+          <td>PKR <%=@given_installment.land_master.installment.installment_type.amount%></td>
+          <td>PKR <%=@given_installment.land_master.installment.installment_type.amount%></td>
+        </tr>
+
+        <tr>
+          <td colspan="2" class="text-right no-border"><strong>Total</strong></td>
+          <td><strong>PKR <%=@given_installment.land_master.installment.installment_type.amount%></strong></td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+  <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+</section>
+<script>
+
+    function printInfo(ele) {
+        var prtContent = document.getElementById(ele);
+        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }
+</script>

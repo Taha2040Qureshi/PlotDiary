@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  installment_id: 1
+  town_id: 1
+  submit_date: 2015-06-12 20:42:46
+  land_master_id: 1
+  status: false
+
+two:
+  installment_id: 1
+  town_id: 1
+  submit_date: 2015-06-12 20:42:46
+  land_master_id: 1
+  status: false

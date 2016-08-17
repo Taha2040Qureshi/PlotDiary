@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1.5
+  date: 2015-05-23 23:48:51
+  status: false
+  employee_id: 1
+  land_master_id: 1
+  expense_id: 1
+  town_id: 1
+  customer_id: 1
+  payment_type_id: 1
+
+two:
+  amount: 1.5
+  date: 2015-05-23 23:48:51
+  status: false
+  employee_id: 1
+  land_master_id: 1
+  expense_id: 1
+  town_id: 1
+  customer_id: 1
+  payment_type_id: 1

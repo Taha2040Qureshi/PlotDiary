@@ -1,0 +1,74 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+      <div class="col-sm-12">
+        <%= render :partial =>"shared/flash_messages"%>
+        <section  class="panel panel-default bg-white">
+          <header class="panel-heading" style="background:#FFF;margin-left:10px;">
+            <div class="pull-right">
+              <%#button%>
+            </div>
+            <strong><h3>Employee Details</h3></strong>
+          </header>
+          <div style="padding:25px">
+            <table cellspacing="0" cellpadding="0" border="0" >
+              <tbody>
+              <tr class="row">
+                <th>Employee Name</th>
+                <td><%= @employee.name%></td>
+              </tr>
+              <tr class="row">
+                <th>Father Name</th>
+                <td><%= @employee.f_name%></td>
+              </tr>
+              <tr class="row">
+                <th>CNIC</th>
+                <td><%= @employee.cnic%></td>
+              </tr>
+              <tr class="row">
+                <th>Address</th>
+                <td><%= @employee.address.address_1 %></td>
+              </tr>
+              <tr class="row">
+                <th>Contact Number</th>
+                <td><%= @employee.address.phone_number1 %></td>
+              </tr>
+              <tr class="row">
+                <th>Secondary Contact Number</th>
+                <td><%= @employee.address.secondary_phone_number %></td>
+              </tr>
+              <tr class="row">
+                <th>Salary</th>
+                <td><%= @employee.salary %></td>
+              </tr>
+              <tr class="row">
+                <th>Designation</th>
+                <td><%= @employee.designation%></td>
+              </tr>
+              <tr class="row">
+                <th>Created At</th>
+                <td><%= @employee.created_at.strftime("%d-%m-%Y %H:%M %p") %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+  </section>
+</section>
+<style>
+    table{
+        width:100%;
+    }
+    td{
+        padding:10px;
+    }
+
+    tr{
+        border-bottom:1px dashed #F0F0F0;
+    }
+    th{
+        padding: 10px;
+    }
+</style>

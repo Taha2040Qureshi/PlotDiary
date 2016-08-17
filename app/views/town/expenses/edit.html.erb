@@ -1,0 +1,34 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+      <div class="col-sm-12">
+        <%= render :partial =>"shared/flash_messages"%>
+        <section class="panel panel-default">
+          <header class="panel-heading" style="background:#FFF;">
+            <h3 style="color:#717171;">Edit Expense </h3>
+          </header>
+          <div class="panel-body">
+            <%= form_for @expense,:url=>town_expense_path ,:html =>{:class=>"panel-body wrapper-lg"} do |f|  %>
+
+                <div class="form-group">
+                  <label class=" control-label">Expense Amount</label>
+                    <%= f.text_field :amount, :class=>"form-control  input-lg", placeholder:"Amount"   %>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Expense Type</label>
+                    <%=f.collection_select :expense_type_id, current_user.town.expense_types.all,:id,:name,{},{:class=>"form-control"}%>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                    <%= f.submit :class=>"btn btn-primary",:value=>"UPDATE" %>
+                    <%= button_tag "Cancel", :type => 'reset',:class=>"btn" %>
+                </div>
+            <% end %>
+          </div>
+        </section>
+      </div>
+    </section>
+  </section>
+</section>

@@ -1,0 +1,22 @@
+
+<div>
+    <header class="panel-heading text-center" style="background:#FFF">
+      <h3>User Login</h3>
+      <%=render :partial => 'shared/flash_messages'%>
+    </header>
+<div class="container col-lg-6 col-sm-push-3">
+    <%= form_for @user,:url => user_session_path, :html =>{:class=>"panel-body wrapper-lg"} do |f|  %>
+        <div class="form-group">
+          <label class="control-label">Email</label>
+          <%= f.text_field :email, :class=>"form-control input-lg",:placeholder => "Email address" %>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Password</label>
+          <%= f.password_field :password, :class=>"form-control input-lg",:placeholder => "Password" %>
+        </div>
+
+
+            <%= f.submit :class=>"btn btn-primary pull-right",:value =>"LOGIN" %>
+    <%end%>
+</div>
+</div>

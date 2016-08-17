@@ -1,0 +1,40 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+      <div class="col-sm-12">
+        <%= render :partial =>"shared/flash_messages"%>
+        <section class="panel panel-default">
+          <header class="panel-heading" style="background:#FFF;">
+            <h3 style="color:#717171;">Add Given to Land Master Installment </h3>
+          </header>
+          <div class="panel-body">
+            <%= form_for @given_installment,:url=>town_given_installments_path ,:html =>{:class=>"panel-body wrapper-lg"} do |f|  %>
+
+                <div class="form-group">
+                  <label class=" control-label">Land Master</label>
+                  <%=f.collection_select :land_master_id, current_user.town.land_masters.all,:id,:name,{},{:class=>"form-control"}%>
+                </div>
+
+                <div class="form-group">
+                  <label class=" control-label">Installment Type</label>
+                  <%=f.collection_select :installment_id, current_user.town.installments.all,:id,:name,{},{:class=>"form-control"}%>
+                </div>
+
+                <div class="form-group">
+                  <label class=" control-label">Submission Date</label>
+                    <%= f.text_field :submit_date, :class=>"combodate form-control" ,"data-format"=>"YYYY-MM-DD HH:mm","data-template"=>"D  MMM  YYYY"%>
+                </div>
+
+                <div class="form-group">
+                  <%= f.submit :class=>"btn btn-primary",:value=>"Add" %>
+                  <%= button_tag "Cancel", :type => 'reset',:class=>"btn" %>
+                </div>
+
+            <% end %>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </section>
+</section>

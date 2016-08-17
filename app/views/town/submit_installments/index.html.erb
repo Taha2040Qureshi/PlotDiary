@@ -1,0 +1,55 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+
+      <section class="panel panel-default">
+        <header class="panel-heading" style="overflow:auto;background:#FFF;">
+          <h4 style="margin-bottom:0px;"> <%=@title%> </h4>
+          <%= render :partial =>"shared/flash_messages"%>
+          <i data-title="ajax to load the data." data-placement="bottom" data-toggle="tooltip" class="fa fa-info-sign text-muted" data-original-title="" title=""></i>
+
+        </header>
+
+        <div class="table-responsive">
+          <table class="table table-striped m-b-none" data-ride="datatables" style="font-size:15px;font-weight:300!important;">
+            <thead>
+            <tr>
+              <th style="font-weight:500;">Customer Name</th>
+              <th style="font-weight:500;">Installment </th>
+              <th style="font-weight:500;">Submit Date</th>
+              <th style="font-weight:500;">Created at</th>
+              <th style="font-weight:500;">Updated at</th>
+              <th style="font-weight:500;">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%@submit_installments.each do |e|%>
+                <tr>
+                  <td><%=e.customer.name%></td>
+                  <td><%=e.installment.name%></td>
+                  <td><%=e.submit_date.strftime("%d-%m-%Y %H:%M %p")%></td>
+                  <td><%=e.created_at.strftime("%d-%m-%Y %H:%M %p")%></td>
+                  <td><%=e.updated_at.strftime("%d-%m-%Y %H:%M %p")%></td>
+                  <td class="text-right">
+                    <a href="<%= town_submit_installment_path(e) %>" style="float:left;">Show</a>
+                    <div class="btn-group">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-pencil"></i></a>
+                      <ul class="dropdown-menu pull-right">
+                        <li><a href="<%=edit_town_submit_installment_path(e)%>">Edit</a></li>
+                        <li><%= link_to "Delete", town_submit_installment_path(e), :method => :delete, :confirm => "Are you sure?" %></li>
+                      </ul>
+                    </div>
+                  </td>
+
+                </tr>
+            <%end%>
+            </tbody>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </section>
+  <a data-target="#nav" data-toggle="class:nav-off-screen" class="hide nav-off-screen-block" href="#"></a>
+</section>

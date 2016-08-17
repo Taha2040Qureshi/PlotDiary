@@ -1,0 +1,166 @@
+<section id="content">
+  <section class="vbox bg-white">
+    <header class="header b-b b-light hidden-print">
+      <a id="print-invoice" class="btn btn-sm btn-info pull-right" onclick="printInfo();">Print</a>
+      <p>Invoice</p>
+    </header>
+    <section id='print-me'class="scrollable wrapper">
+      <i class="fa fa-home fa fa-3x"></i>
+      <div class="row">
+        <div class="col-xs-6">
+          <h4><%= @submit_installment.town.name if @submit_installment.town.present?%></h4>
+          <p><%= @submit_installment.town.address.address_1+" "+ @submit_installment.town.address.address_2%> <br>
+            <%=@submit_installment.town.address.zip_code+", "+ @submit_installment.town.address.city%> <br>
+            <%= @submit_installment.town.address.country%>
+          </p>
+          <p>
+            Telephone:  <%=@submit_installment.town.address.phone_number1%><br>
+            Mobile:  <%=@submit_installment.town.address.secondary_phone_number%>
+          </p>
+        </div>
+        <div class="col-xs-6 text-right">
+          <p class="h4">#REF-<%=@submit_installment.customer.id.to_s+"-"+ @submit_installment.town.id.to_s%></p>
+          <h5><%=@submit_installment.created_at.strftime("%d-%m-%Y %H:%M %p")%></h5>
+        </div>
+      </div>
+      <div class="well m-t">
+        <div class="row">
+          <div class="col-xs-6">
+            <strong>TO:</strong>
+            <h4><%=@submit_installment.customer.name%></h4>
+            <p>
+              <%=@submit_installment.customer.address.address_1%><br>
+              <%=@submit_installment.customer.address.address_2+', '+ @submit_installment.customer.address.city+' '+ @submit_installment.customer.address.zip_code %> <br>
+              <%=@submit_installment.customer.address.country%><br>
+              Phone: <%=@submit_installment.customer.address.phone_number1%><br>
+              Phone2: <%=@submit_installment.customer.address.secondary_phone_number%>
+            </p>
+          </div>
+        </div>
+      </div>
+      <p class="m-t m-b">Submit date: <strong><%=@submit_installment.submit_date.strftime("%d-%m-%Y %H:%M %p")%></strong><br>
+        Submission status: <span class="label bg-success">Deposit</span><br>
+        Submission ID: <strong><%=@submit_installment.id%></strong>
+      </p>
+      <div class="line"></div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th width="60">INSTALLMENT PLOT</th>
+          <th width="140">AMOUNT</th>
+          <th width="90">TOTAL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>PLOT: <%=@submit_installment.customer.plot.plot_number%></td>
+          <td>PKR <%=@submit_installment.customer.installment.installment_type.amount%></td>
+          <td>PKR <%=@submit_installment.customer.installment.installment_type.amount%></td>
+        </tr>
+
+        <tr>
+          <td colspan="2" class="text-right no-border"><strong>Total</strong></td>
+          <td><strong>PKR <%=@submit_installment.customer.installment.installment_type.amount%></strong></td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+  <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+</section>
+<script>
+
+    function printInfo() {
+        $( "#print-me" ).print();
+//        var prtContent = document.getElementById(ele);
+//        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+//        WinPrint.document.write(prtContent.innerHTML);
+//        WinPrint.document.close();
+//        WinPrint.focus();
+//        WinPrint.print();
+//        WinPrint.close();
+
+    }
+
+    // Create a jquery plugin that prints the given element.
+    jQuery.fn.print = function(){
+        // NOTE: We are trimming the jQuery collection down to the
+        // first element in the collection.
+        if (this.size() > 1){
+            this.eq( 0 ).print();
+            return;
+        } else if (!this.size()){
+            return;
+        }
+
+        // ASSERT: At this point, we know that the current jQuery
+        // collection (as defined by THIS), contains only one
+        // printable element.
+
+        // Create a random name for the print frame.
+        var strFrameName = ("printer-" + (new Date()).getTime());
+
+        // Create an iFrame with the new name.
+        var jFrame = $( "<iframe name='" + strFrameName + "'>" );
+
+        // Hide the frame (sort of) and attach to the body.
+        jFrame
+                .css( "width", "1px" )
+                .css( "height", "1px" )
+                .css( "position", "absolute" )
+                .css( "left", "-9999px" )
+                .appendTo( $( "body:first" ) )
+        ;
+
+        // Get a FRAMES reference to the new frame.
+        var objFrame = window.frames[ strFrameName ];
+
+        // Get a reference to the DOM in the new frame.
+        var objDoc = objFrame.document;
+
+        // Grab all the style tags and copy to the new
+        // document so that we capture look and feel of
+        // the current document.
+
+        // Create a temp document DIV to hold the style tags.
+        // This is the only way I could find to get the style
+        // tags into IE.
+        var jStyleDiv = $( "<div>" ).append(
+                $( "style" ).clone()
+        );
+
+        // Write the HTML for the document. In this, we will
+        // write out the HTML of the current element.
+        objDoc.open();
+        objDoc.write( "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">" );
+        objDoc.write( "<html>" );
+        objDoc.write( "<body>" );
+        objDoc.write( "<head>" );
+        objDoc.write( "<title>" );
+        objDoc.write( document.title );
+        objDoc.write( "</title>" );
+        objDoc.write( jStyleDiv.html() );
+        objDoc.write( "</head>" );
+        objDoc.write( this.html() );
+        objDoc.write( "</body>" );
+        objDoc.write( "</html>" );
+        objDoc.close();
+
+        // Print the document.
+        objFrame.focus();
+        objFrame.print();
+
+        // Have the frame remove itself in about a minute so that
+        // we don't build up too many of these frames.
+        setTimeout(
+                function(){
+                    jFrame.remove();
+                },
+                (60 * 1000)
+        );
+    }
+
+
+
+
+</script>

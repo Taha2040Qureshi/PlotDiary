@@ -1,0 +1,58 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+      <div class="col-sm-12">
+        <%= render :partial =>"shared/flash_messages"%>
+        <section  class="panel panel-default bg-white">
+          <header class="panel-heading" style="background:#FFF;margin-left:10px;">
+            <div class="pull-right">
+              <%#button%>
+            </div>
+            <strong><h3>Land Master Details</h3></strong>
+          </header>
+          <div style="padding:25px">
+            <table cellspacing="0" cellpadding="0" border="0" >
+              <tbody>
+              <tr class="row">
+                <th>Land Master Name</th>
+                <td><%= @land_master.name%></td>
+              </tr>
+              <tr class="row">
+                <th>Address</th>
+                <td><%= @land_master.address.address_1 %></td>
+              </tr>
+              <tr class="row">
+                <th>Contact Number</th>
+                <td><%= @land_master.address.phone_number1 %></td>
+              </tr>
+              <tr class="row">
+                <th>Secondary Contact Number</th>
+                <td><%= @land_master.address.secondary_phone_number %></td>
+              </tr>
+              <tr class="row">
+                <th>Created At</th>
+                <td><%= @land_master.created_at.strftime("%d-%m-%Y %H:%M %p") %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+  </section>
+</section>
+<style>
+    table{
+        width:100%;
+    }
+    td{
+        padding:10px;
+    }
+
+    tr{
+        border-bottom:1px dashed #F0F0F0;
+    }
+    th{
+        padding: 10px;
+    }
+</style>

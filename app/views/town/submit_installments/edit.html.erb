@@ -1,0 +1,41 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+      <div class="col-sm-12">
+        <%= render :partial =>"shared/flash_messages"%>
+        <section class="panel panel-default">
+          <header class="panel-heading" style="background:#FFF;">
+            <h3 style="color:#717171;">Edit Submission of Installment </h3>
+          </header>
+          <div class="panel-body">
+            <%= form_for @submit_installment,:url=>town_submit_installment_path ,:html =>{:class=>"panel-body wrapper-lg"} do |f|  %>
+
+                <div class="form-group">
+                  <label class=" control-label">Customer</label>
+                  <%=f.collection_select :customer_id, current_user.town.customers.all,:id,:name,{},{:class=>"form-control"}%>
+
+                </div>
+
+                <div class="form-group">
+                  <label class=" control-label">Installment Type</label>
+                  <%=f.collection_select :installment_id, current_user.town.installments.all,:id,:name,{},{:class=>"form-control"}%>
+                </div>
+
+                <div class="form-group">
+                  <label class=" control-label">Submission Date</label>
+                  <%= f.text_field :submit_date, :class=>"combodate form-control" ,"data-format"=>"YYYY-MM-DD","data-template"=>"D  MMM  YYYY"%>
+                </div>
+
+                <div class="form-group">
+                  <%= f.submit :class=>"btn btn-primary",:value=>"UPDATE" %>
+                  <%= button_tag "Cancel", :type => 'reset',:class=>"btn" %>
+                </div>
+
+            <% end %>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </section>
+</section>

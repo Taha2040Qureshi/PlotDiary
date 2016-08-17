@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+  <meta charset="utf-8" />
+  <title>Town | C Panel</title>
+  <%= stylesheet_link_tag "main" %>
+  <%= javascript_include_tag "main" %>
+</head>
+<body>
+<section class="vbox" id="main-div-box">
+  <header class="bg-dark dk  header navbar navbar-fixed-top-xs" style="margin-top:0px;">
+    <div class="navbar-header">
+      <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+        <i class="fa fa-bars"></i>
+      </a>
+      <!--<a href="#" class="navbar-brand" data-toggle="fullscreen">-->
+      <!--<img src="images/town.png" class="m-r-sm">-->
+      <h1 class="logo"  class="navbar-brand"  style="font-size:25px;margin-top: 7px;padding-left:9px;letter-spacing:1px;font-weight:400;">
+
+
+          <span style="color:#fff;">Emaan Developers &</span>
+          <span style="color:#65bd77;">Builders Burewala</span>
+        
+      </h1>
+    </div>
+
+
+    <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+
+      <%= render :partial => "shared/employee_menu"%>
+    </ul>
+  </header>
+  <section>
+    <section class="hbox stretch">
+      <aside class="bg-black lter aside-md hidden-print hidden-xs" id="nav" >
+        <section class="vbox">
+          <%=render :partial => "shared/left_navigation_employee"%>
+        </section>
+      </aside>
+      <%=yield%>
+    </section>
+  </section>
+</section>
+
+<script>
+  function booleanToggler(id){
+    if($('#'+id).val() == 'true'){
+      $('#'+id).val('false');
+    }
+    else
+      $('#'+id).val('true');
+  }
+
+</script>
+
+</body>
+
+</html>
+

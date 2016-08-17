@@ -1,0 +1,46 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+      <div class="col-sm-12">
+        <%= render :partial =>"shared/flash_messages"%>
+        <section class="panel panel-default">
+          <header class="panel-heading" style="background:#FFF;">
+            <h3 style="color:#717171;">Add Land Master Details </h3>
+          </header>
+          <div class="panel-body">
+            <%= form_for @land_master,validate: true,:url=>town_land_masters_path ,:html =>{:class=>"panel-body wrapper-lg"} do |f|  %>
+
+                <div class="form-group">
+                  <label class=" control-label">Name</label>
+                    <%= f.text_field :name , :class=>"form-control  input-lg"%>
+                </div>
+                <div class="form-group">
+                  <label class=" control-label">Father Name</label>
+                  <%= f.text_field :f_name , :class=>"form-control  input-lg" %>
+                </div>
+                <div class="form-group">
+                  <label class=" control-label">CNIC</label>
+                  <%= f.number_field :cnic , :class=>"form-control  input-lg" %>
+                </div>
+
+                <div class="form-group">
+                    <%=render :partial =>'town/land_masters/partials/address.html.erb',:locals=>{:f => f}%>
+                </div>
+
+
+                <div class="form-group">
+                  <%=render :partial =>'town/land_masters/partials/installment.html.erb',:locals=>{:f => f}%>
+                </div>
+
+
+                <div class="form-group">
+                    <%= f.submit :class=>"btn btn-primary",:value=>"ADD" %>
+                    <%= button_tag "Cancel", :type => 'reset',:class=>"btn" %>
+                </div>
+            <% end %>
+          </div>
+        </section>
+      </div>
+    </section>
+  </section>
+</section>

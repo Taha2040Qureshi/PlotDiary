@@ -1,0 +1,35 @@
+<section id="content">
+  <section class="vbox">
+    <section class="scrollable padder">
+      <div class="col-sm-12">
+        <%= render :partial =>"shared/flash_messages"%>
+        <section class="panel panel-default">
+          <header class="panel-heading" style="background:#FFF;">
+            <h3 style="color:#717171;">Add New Investment </h3>
+          </header>
+          <div class="panel-body">
+            <%= form_for @investment,:url=>town_investments_path ,:html =>{:class=>"panel-body wrapper-lg"} do |f|  %>
+
+                <div class="form-group">
+                  <label class="control-label">Amount</label>
+                    <%= f.text_field :amount, :class=>"form-control  input-lg", placeholder:"Investment Amount"%>
+                </div>
+
+
+                <div class="form-group">
+                  <label class=" control-label">Stake Holder</label>
+                  <%=f.collection_select :stake_holder_id, current_user.town.stake_holders.all,:id,:name,{},{:class=>"form-control"}%>
+                </div>
+
+
+                <div class="form-group">
+                    <%= f.submit :class=>"btn btn-primary",:value=>"Add" %>
+                    <%= button_tag "Cancel", :type => 'reset',:class=>"btn" %>
+                </div>
+            <% end %>
+          </div>
+        </section>
+      </div>
+    </section>
+  </section>
+</section>

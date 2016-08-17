@@ -1,0 +1,42 @@
+<%if flash[:alert].present? || flash[:error].present? || flash[:errors].present? || flash[:success].present? || flash[:info].present?%>
+    <div class="col-lg-12" style="margin-top:20px;margin-bottom:20px;">
+      <%if flash[:alert].present?%>
+          <div class="alert alert-warning alert-block">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <i class="fa fa-bell-alt"></i><strong>Alert!</strong> <%=flash[:alert]%>
+          </div>
+      <%end%>
+
+      <%if flash[:error].present?%>
+          <div class="alert alert-danger">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <i class="fa fa-ban-circle"></i><strong>Error! </strong>  <%=flash[:error]%>
+          </div>
+      <%end%>
+
+      <%if flash[:errors].present?%>
+          <div class="alert alert-danger">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <i class="fa fa-ban-circle"></i>  <ul style="list-style:none;line-height:20px;"><li><strong style="font-size:14px;">Error!</strong></li><%flash[:errors].each do |e|%>
+                <li><%=e%></li>
+            <%end%></ul>
+          </div>
+      <%end%>
+
+      <%if flash[:success].present?%>
+          <div class="alert alert-success">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <i class="fa fa-ok-sign"></i><strong>Success! </strong> <%= flash[:success]%>.
+          </div>
+
+      <%end%>
+
+      <%if flash[:info].present?%>
+          <div class="alert alert-info">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <i class="fa fa-info-sign"></i><strong>Info!</strong> <%=flash[:info]%>
+          </div>
+      <%end%>
+
+    </div>
+<%end%>

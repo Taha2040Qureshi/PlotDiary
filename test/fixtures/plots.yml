@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plot_number: 1
+  total_price: 1.5
+  area: 1.5
+  length: 1.5
+  width: 1.5
+
+two:
+  plot_number: 1
+  total_price: 1.5
+  area: 1.5
+  length: 1.5
+  width: 1.5
