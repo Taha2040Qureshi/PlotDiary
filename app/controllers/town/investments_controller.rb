@@ -30,9 +30,8 @@ class Town::InvestmentsController < Town::BaseController
   end
 
   private
-
   def investment_params
-    params.require(:investment).permit(:amount)
+    params.require(:investment).permit(:amount, :stake_holder_id)
   end
 
 end

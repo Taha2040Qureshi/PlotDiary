@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post 'town/signin' => 'town/sessions#create', :as => :user_session
     delete 'town/signout' => 'town/sessions#destroy', :as => :destroy_user_session
   end
+
+
   namespace :town do
     resources :towns
     resources :home
