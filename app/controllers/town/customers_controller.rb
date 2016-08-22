@@ -57,7 +57,7 @@ class Town::CustomersController < Town::BaseController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :f_name, :cnic, :plot_id, :status,:town_id,
+    params.require(:customer).permit(:name, :f_name, :cnic, :status,:town_id,
                                      :address_attributes => [:id, :address_1, :address_2, :phone_number1, :secondary_phone_number, :_destroy],
                                      :installment_attributes => [:id, :town_id, :total_amount, :advance_amount, :total_number_of_installments, :per_installments_amount, :installment_type, :_destroy])
   end

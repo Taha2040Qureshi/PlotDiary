@@ -5,9 +5,7 @@
       <section class="panel panel-default">
         <header class="panel-heading" style="overflow:auto;background:#FFF;">
           <h4 style="margin-bottom:0px;"> <%=@title%> </h4>
-          <div class="pull-right">
-            <%=link_to "Installment",new_town_installment_path,:class=>"btn btn-info"%>
-          </div>
+          
           <%= render :partial =>"shared/flash_messages"%>
           <i data-title="ajax to load the data." data-placement="bottom" data-toggle="tooltip" class="fa fa-info-sign text-muted" data-original-title="" title=""></i>
 
