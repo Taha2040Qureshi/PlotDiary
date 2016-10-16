@@ -40,5 +40,5 @@ production:
   encoding: unicode
   database: townsonline_production
   pool: 5
-  username: daftaar
+  username: townsonline
   password:
