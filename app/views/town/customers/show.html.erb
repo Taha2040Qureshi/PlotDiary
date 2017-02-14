@@ -42,8 +42,20 @@
                 <td><%= @customer.plot.plot_number %></td>
               </tr>
               <tr class="row">
-                <th>Customer Installment Details</th>
-                <td><%= @customer.installment.name %></td>
+                <th>Total Amount</th>
+                <td><%= @customer.installment.total_amount %></td>
+              </tr>
+              <tr class="row">
+                <th>Advance Amount</th>
+                <td><%= @customer.installment.advance_amount %></td>
+              </tr>
+              <tr class="row">
+                <th>Total Number of Installments</th>
+                <td><%= @customer.installment.total_number_of_installments %></td>
+              </tr>
+              <tr class="row">
+                <th>Per Installment Amount</th>
+                <td><%= @customer.installment.per_installments_amount %></td>
               </tr>
               <tr class="row">
                 <th>Created At</th>

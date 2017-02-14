@@ -10,16 +10,4 @@ class StakeHolder < ActiveRecord::Base
   validates :f_name, presence: true
   validates :cnic, presence: true
 
-
-
-  # after_create :add_payment
-  #
-  # def add_payment
-  #   Payment.create(:amount => self.investment.amount,
-  #                  :date => self.created_at,
-  #                  :stake_holder_id => self.id,
-  #                  :town_id => self.town_id,
-  #                  :payment_type => 'deposite'
-  #   )
-  # end
 end

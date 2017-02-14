@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404114424) do
+ActiveRecord::Schema.define(version: 20170213121148) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20160404114424) do
 
   create_table "expenses", force: :cascade do |t|
     t.float    "amount",          limit: 24
-    t.boolean  "status",          limit: 1
+    t.boolean  "status"
     t.integer  "town_id",         limit: 4
     t.integer  "expense_type_id", limit: 4
     t.datetime "created_at",                    null: false
@@ -102,13 +102,13 @@ ActiveRecord::Schema.define(version: 20160404114424) do
     t.integer  "town_id",        limit: 4
     t.datetime "submit_date"
     t.integer  "land_master_id", limit: 4
-    t.boolean  "status",         limit: 1
+    t.boolean  "status"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
   create_table "installments", force: :cascade do |t|
-    t.boolean  "status",                       limit: 1
+    t.boolean  "status"
     t.integer  "town_id",                      limit: 4
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20160404114424) do
   create_table "payments", force: :cascade do |t|
     t.float    "amount",          limit: 24
     t.datetime "date"
-    t.boolean  "status",          limit: 1
+    t.boolean  "status"
     t.integer  "employee_id",     limit: 4
     t.integer  "land_master_id",  limit: 4
     t.integer  "expense_id",      limit: 4
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20160404114424) do
     t.datetime "updated_at",                  null: false
     t.string   "payment_type",    limit: 255
     t.integer  "stake_holder_id", limit: 4
+    t.string   "payment_status",  limit: 255
   end
 
   create_table "plots", force: :cascade do |t|
@@ -160,8 +161,9 @@ ActiveRecord::Schema.define(version: 20160404114424) do
     t.float    "length",      limit: 24
     t.float    "width",       limit: 24
     t.integer  "town_id",     limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "status",      limit: 4,  default: 0
   end
 
   create_table "stake_holders", force: :cascade do |t|
@@ -188,7 +190,7 @@ ActiveRecord::Schema.define(version: 20160404114424) do
     t.integer  "town_id",        limit: 4
     t.datetime "submit_date"
     t.integer  "customer_id",    limit: 4
-    t.boolean  "status",         limit: 1
+    t.boolean  "status"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end

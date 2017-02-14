@@ -52,7 +52,7 @@ class Town::StakeHoldersController < Town::BaseController
   private
 
   def stake_holder_params
-    params.require(:stake_holder).permit(:name, :f_name, :cnic, :town_id, :address_attributes => [:address_1, :address_2, :phone_number1, :secondary_phone_number ])
+    params.require(:stake_holder).permit(:name, :f_name, :cnic, :town_id, :address_attributes => [:address_1, :phone_number1, :secondary_phone_number ])
   end
 
 end

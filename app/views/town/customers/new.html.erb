@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                   <label class=" control-label">Plot Number</label>
-                    <%=f.collection_select :plot_id, current_user.town.plots.all,:id,:plot_number,{},{:class=>"form-control"}%>
+                    <%=f.collection_select :plot_id, current_user.town.plots.where(:status => 0).all,:id,:plot_number,{},{:class=>"form-control"}%>
                     <span class="help-block m-b-none">ALL Plots are shown here.</span>
                 </div>
 

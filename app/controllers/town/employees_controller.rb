@@ -52,7 +52,7 @@ class Town::EmployeesController < Town::BaseController
   private
 
   def employee_params
-    params.require(:employee).permit(:name, :f_name, :cnic, :salary, :town_id, :designation, :address_attributes => [:address_1, :address_2, :phone_number1, :secondary_phone_number ])
+    params.require(:employee).permit(:name, :f_name, :cnic, :salary, :town_id, :designation, :address_attributes => [:address_1, :phone_number1, :secondary_phone_number ])
   end
 
 end
