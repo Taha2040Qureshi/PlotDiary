@@ -12,4 +12,16 @@ class LandMaster < ActiveRecord::Base
   validates :f_name, presence: true
   validates :cnic, presence: true
 
+  after_create :add_payment
+
+  def add_payment
+    Payment.create(:amount => self.installment.advance_amount,
+                   :date => self.created_at,
+                   :land_master_id => self.id,
+                   :town_id => self.town_id,
+                   :payment_type => 'withdraw',
+                   :payment_status => 'advance'
+    )
+  end
+
 end

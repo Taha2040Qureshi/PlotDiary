@@ -55,7 +55,7 @@ class Town::LandMastersController < Town::BaseController
   private
 
   def land_master_params
-    params.require(:land_master).permit(:name, :f_name, :cnic, :status, :town_id, :address_attributes => [:id, :address_1, :address_2, :phone_number1, :secondary_phone_number, :_destroy],
+    params.require(:land_master).permit(:name, :f_name, :cnic, :status, :town_id, :address_attributes => [:id, :address_1, :phone_number1, :secondary_phone_number, :_destroy],
                                         :installment_attributes => [:id, :town_id, :total_amount, :advance_amount, :total_number_of_installments, :per_installments_amount, :installment_type, :_destroy])
   end
 

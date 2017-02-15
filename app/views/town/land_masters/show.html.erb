@@ -18,6 +18,14 @@
                 <td><%= @land_master.name%></td>
               </tr>
               <tr class="row">
+                <th>Father's Name</th>
+                <td><%= @land_master.f_name%></td>
+              </tr>
+              <tr class="row">
+                <th>CNIC</th>
+                <td><%= @land_master.cnic%></td>
+              </tr>
+              <tr class="row">
                 <th>Address</th>
                 <td><%= @land_master.address.address_1 %></td>
               </tr>
@@ -28,6 +36,22 @@
               <tr class="row">
                 <th>Secondary Contact Number</th>
                 <td><%= @land_master.address.secondary_phone_number %></td>
+              </tr>
+              <tr class="row">
+                <th>Total Amount</th>
+                <td><%= @land_master.installment.total_amount %></td>
+              </tr>
+              <tr class="row">
+                <th>Advance Amount</th>
+                <td><%= @land_master.installment.advance_amount %></td>
+              </tr>
+              <tr class="row">
+                <th>Total Number of Installments</th>
+                <td><%= @land_master.installment.total_number_of_installments %></td>
+              </tr>
+              <tr class="row">
+                <th>Per Installment Amount</th>
+                <td><%= @land_master.installment.per_installments_amount %></td>
               </tr>
               <tr class="row">
                 <th>Created At</th>

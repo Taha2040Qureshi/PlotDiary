@@ -14,4 +14,21 @@ class Customer < ActiveRecord::Base
   validates :plot_id, presence: true
   validates :town_id, presence: true
 
+  after_create :set_plot
+  after_create :add_payment
+
+  def set_plot
+    plot = Plot.find(self.plot_id)
+    plot.update_attribute(:status,1)
+  end
+
+  def add_payment
+    Payment.create(:amount => self.installment.advance_amount,
+                   :date => self.created_at,
+                   :customer_id => self.id,
+                   :town_id => self.town_id,
+                   :payment_type => 'deposite',
+                   :payment_status => 'advance'
+    )
+  end
 end
