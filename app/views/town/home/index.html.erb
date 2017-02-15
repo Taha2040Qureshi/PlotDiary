@@ -49,9 +49,94 @@
               <span class="h3 block m-t-xs"><strong></strong></span>
               <small class="text-muted text-uc">Installment</small>
             </a>
+
           </div>
         </div>
       </section>
+
+
+
+
+
+      <div class="panel panel-primary">
+        <div class="page-header"><h3>General Calculation</h3></div>
+        <div class="panel-body">
+          <div class="form-group">
+            <div id="error"></div>
+            <label for="usr">Total Amount </label>
+            <input type="number" name="totalAmount" class="form-control" id="totalAmount">
+          </div>
+          <div class="form-group">
+            <label for="usr">Amount Paid</label>
+            <input type="number" name="advanceAmount" class="form-control" id="advanceAmount">
+          </div>
+          <div class="form-group">
+            <label for="usr">Remaining Amount</label>
+            <input type="number" name="remainingAmount" class="form-control" id="remainingAmount">
+          </div>
+          <div class="form-group">
+            <label for="usr">Number of installments</label>
+            <input type="number" name="numberOfInstallments" class="form-control" id="numberOfInstallments">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary"  onclick="calculateInstallment();" id="btnCalculate">Calculate</button>
+          </div>
+          <div class="form-group">
+            <label for="usr">Per installment Amount</label>
+            <input type="number" name="PerInstallmentAmount" class="form-control" id="PerInstallmentAmount">
+          </div>
+        </div>
+      </div>
+      </div>
+
     </section>
   </section>
 </section>
+
+
+
+
+<script type="text/javascript">
+  function calculateInstallment() {
+      var totalAmount = parseInt($('#totalAmount').val());
+      var advanceAmount = parseInt($('#advanceAmount').val());
+      var remainingAmount = $('#remainingAmount').val();
+      var numberOfInstallments = parseInt($('#numberOfInstallments').val());
+      var perInstallmentAmount = $('#PerInstallmentAmountmount').val();
+
+      if(advanceAmount >= totalAmount)
+      {
+          $('#error').append("Adance amount can't be greater then  OR  equal total amount ");
+          return;
+      }
+      if(totalAmount == null)
+      {
+          $('#error').append("Total amount can't be empty ");
+          return;
+      }
+      if(advanceAmount == null)
+      {
+          $('#error').append("Advance amount can't be empty ");
+          return;
+      }
+      if( advanceAmount == totalAmount)
+      {
+          $('#error').append("Advance amount can't be equal to the Total amount ");
+          return;
+      }
+      if(numberOfInstallments == null)
+      {
+          $('#error').append("Number of Installments can't be empty ");
+          return;
+      }
+          var remainingAmount = totalAmount -advanceAmount;
+          console.log(remainingAmount);
+          $("#remainingAmount").val(remainingAmount);
+
+
+      var perInstallmentAmount = remainingAmount / numberOfInstallments;
+      console.log(perInstallmentAmount);
+      $("#PerInstallmentAmount").val(perInstallmentAmount);
+
+  }
+</script>
