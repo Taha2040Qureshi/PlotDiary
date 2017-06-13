@@ -12,6 +12,7 @@ class Town::SubmitInstallmentsController < Town::BaseController
   def create
     @submit_installment = current_town.submit_installments.new(submit_installment_params)
     @submit_installment.town_id = current_user.town.id
+    @submit_installment.installment_id = Customer.find_by(@submit_installment.customer_id).installment_id
     if @submit_installment.valid?
       @submit_installment.save
       flash[:success] = "Stake Holder has been successfully added"
