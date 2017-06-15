@@ -4,6 +4,5 @@ class Stock < ActiveRecord::Base
 
   validates :town_id, presence: true
   validates :name, presence: true
-  validates :expense_id, presence: true
 
 end

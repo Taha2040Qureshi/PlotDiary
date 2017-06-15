@@ -35,6 +35,7 @@
 //= require jquery.flot.grow.js
 //= require bootstrap-slider.js
 //= require rails.validations.js
+//= require installments.js
 
 
 

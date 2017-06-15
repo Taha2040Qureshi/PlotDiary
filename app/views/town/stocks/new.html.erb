@@ -14,10 +14,12 @@
                 <%=f.text_field :name, :class=>"form-control  input-lg", placeholder: "Stock Name" %>
               </div>
 
-              <div class="form-group">
-                <label class=" control-label">Expense</label>
-                <%=f.collection_select :expense_id, current_user.town.expenses.all,:id,:amount,{},{:class=>"form-control"}%>
-              </div>
+              <%= f.fields_for :expense do |ff| %>
+                <div class="form-group">
+                  <label class=" control-label">Expense</label>
+                  <%=ff.text_field :amount, :class=>"form-control"%>
+                </div>
+              <% end %>
 
               <div class="form-group">
                 <%= f.submit :class=>"btn btn-primary",:value=>"Add" %>

@@ -51,7 +51,7 @@ class Town::ExpensesController < Town::BaseController
   private
 
   def expense_params
-    params.require(:expense).permit(:amount, :status, :town_id, :expense_type_id)
+    params.require(:expense).permit(:amount, :expense_date, :status, :town_id, :expense_type_id, :description)
   end
 
 end

@@ -17,20 +17,22 @@
           <table class="table table-striped m-b-none" data-ride="datatables" style="font-size:15px;font-weight:300!important;">
             <thead>
             <tr>
+              <th style="font-weight:500;">Description</th>
               <th style="font-weight:500;">Amount</th>
               <th style="font-weight:500;">Expense type </th>
+              <th style="font-weight:500;">Expense Date</th>
               <th style="font-weight:500;">Created at</th>
-              <th style="font-weight:500;">Updated at</th>
               <th style="font-weight:500;">Action</th>
             </tr>
             </thead>
             <tbody>
             <%@expenses.each do |e|%>
                 <tr>
+                  <td><%=e.description%></td>
                   <td><%=e.amount%></td>
                   <td><%=e.expense_type.name%></td>
+                  <td><%=e.expense_date%></td>
                   <td><%=e.created_at%></td>
-                  <td><%=e.updated_at%></td>
                   <td class="text-right">
                     <a href="<%= town_expense_path(e) %>" style="float:left;">Show</a>
                     <div class="btn-group">

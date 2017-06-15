@@ -1736,6 +1736,7 @@ input[type="search"] {
 }
 input[type="date"] {
   line-height: 34px;
+  width: 250px;
 }
 .form-group {
   margin-bottom: 15px;
