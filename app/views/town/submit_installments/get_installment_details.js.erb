@@ -1,0 +1,2 @@
+ $('.installment_amount').html('<%= @customer.installment.per_installments_amount %>');
+ $('.rem-installment').html('<%=  @customer.installment.total_number_of_installments - @customer.submit_installments.count %>');

@@ -26,7 +26,7 @@
             <%@submit_installments.each do |e|%>
                 <tr>
                   <td><%=e.customer.name%></td>
-                  <td><%=e.installment.name%></td>
+                  <td><%=e.installment.per_installments_amount%></td>
                   <td><%=e.submit_date.strftime("%d-%m-%Y %H:%M %p")%></td>
                   <td><%=e.created_at.strftime("%d-%m-%Y %H:%M %p")%></td>
                   <td><%=e.updated_at.strftime("%d-%m-%Y %H:%M %p")%></td>

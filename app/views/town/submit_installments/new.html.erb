@@ -12,12 +12,29 @@
 
                 <div class="form-group">
                   <label class=" control-label">Customer</label>
-                  <%=f.collection_select :customer_id, current_user.town.customers.all,:id,:name,{},{:class=>"form-control"}%>
+                  <%=f.collection_select :customer_id, current_user.town.customers.all,:id,:name,{:prompt => "Please select a Customer"},{:class=>"form-control select-customer"}%>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label customer-info">Installment Amount:</label>
+                  <label class="col-md-3 control-label installment_amount customer-info"> 0 </label>
+                  <label class="control-label customer-info">Remaining Installments:</label>
+                  <label class="control-label rem-installment customer-info"> 0 </label>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label "> Number of Installments: </label>
+                  <input class="form-control no-of-installment number-input" type="number" name="number_of_installment[number]" id="number_of_installment_number">
+                </div>
+
+                <div class="form-group">
+                  <label class=" control-label customer-info">Total Amount:</label>
+                  <label class=" control-label total-amount customer-info"> 0 </label>
                 </div>
 
                 <div class="form-group">
                   <label class=" control-label">Submission Date</label>
-                    <%= f.text_field :submit_date, :class=>"combodate form-control" ,"data-format"=>"YYYY-MM-DD HH:mm","data-template"=>"D  MMM  YYYY"%>
+                    <%= f.date_field :submit_date, :class=>"form-control  input-lg  date-picker" %>
                 </div>
 
                 <div class="form-group">

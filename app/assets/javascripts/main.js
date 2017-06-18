@@ -36,6 +36,7 @@
 //= require bootstrap-slider.js
 //= require rails.validations.js
 //= require installments.js
+//= require submit_installment.js
 
 
 

@@ -10,16 +10,26 @@ class Town::SubmitInstallmentsController < Town::BaseController
   end
 
   def create
-    @submit_installment = current_town.submit_installments.new(submit_installment_params)
-    @submit_installment.town_id = current_user.town.id
-    if @submit_installment.valid?
-      @submit_installment.save
-      flash[:success] = "Stake Holder has been successfully added"
+    number = number_of_installment[:number].to_i
+    saved = false
+    number.times { |i|
+      puts "===" * 10
+      @submit_installment = current_town.submit_installments.new(submit_installment_params)
+      @submit_installment.town_id = current_user.town.id
+      @submit_installment.installment_id = Customer.find(@submit_installment.customer_id).installment_id
+      if @submit_installment.valid?
+        @submit_installment.save
+        saved = true
+        flash[:success] = "Installment Submitted"
+      else
+        flash[:errors] = @submit_installment.errors.full_messages
+      end
+    }
+    if saved
       return redirect_to town_submit_installments_path
     else
-      flash[:errors] = @submit_installment.errors.full_messages
+      render :new
     end
-    render :new
   end
 
   def edit
@@ -33,7 +43,7 @@ class Town::SubmitInstallmentsController < Town::BaseController
   def update
     @submit_installment = current_town.submit_installments.where(:id => params[:id]).first
     if @submit_installment.update_attributes(submit_installment_params)
-      flash[:success] = "Stake Holder datails has been updated!"
+      flash[:success] = "Installment updated!"
       return redirect_to town_submit_installments_path
     else
       flash.now[:errors] = @submit_installment.errors.full_messages
@@ -48,10 +58,19 @@ class Town::SubmitInstallmentsController < Town::BaseController
     redirect_to :back
   end
 
+  def get_installment_details
+    @customer = Customer.find(params[:customer_id])
+    puts @customer.inspect
+  end
+
   private
 
   def submit_installment_params
     params.require(:submit_installment).permit(:customer_id, :town_id, :installment_id, :submit_date)
+  end
+
+  def number_of_installment
+    params.require(:number_of_installment).permit(:number)
   end
 
 end

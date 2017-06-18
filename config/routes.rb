@@ -21,7 +21,11 @@ Rails.application.routes.draw do
     resources :land_masters
     resources :plots
     resources :stake_holders
-    resources :submit_installments
+    resources :submit_installments do
+      collection do
+        get 'get_installment_details' => "submit_installments#get_installment_details"
+      end
+    end
     resources :given_installments
     resources :stocks
   end
