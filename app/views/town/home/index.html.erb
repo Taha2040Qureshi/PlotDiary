@@ -163,20 +163,20 @@
             <header class="panel-heading text-right bg-light">
               <ul class="nav nav-tabs pull-left">
                 <li class="active">
-                  <a href="#daily" data-toggle="tab">Daily</a>
+                  <a href="#daily-cinst" data-toggle="tab">Daily</a>
                 </li>
                 <li class="">
-                  <a href="#weekly" data-toggle="tab">Weekly</a>
+                  <a href="#weekly-cinst" data-toggle="tab">Weekly</a>
                 </li>
                 <li class="">
-                  <a href="#monthly" data-toggle="tab">Monthly</a>
+                  <a href="#monthly-cinst" data-toggle="tab">Monthly</a>
                 </li>
               </ul>
               <span class="hidden-sm">&nbsp;</span>
             </header>
             <div class="panel-body">
               <div class="tab-content">
-                <div class="tab-pane fade active in" id="daily">
+                <div class="tab-pane fade active in" id="daily-cinst">
                   <table class="table table-striped m-b-none">
                     <thead>
                     <tr>
@@ -198,7 +198,7 @@
                     </tbody>
                   </table>
                 </div>
-                <div class="tab-pane fade" id="profile-2">
+                <div class="tab-pane fade" id="weekly-cinst">
                   <table class="table table-striped m-b-none">
                     <thead>
                     <tr>
@@ -220,6 +220,29 @@
                     </tbody>
                   </table>
                 </div>
+
+                <div class="tab-pane fade" id="monthly-cinst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Total Installments</th>
+                      <th>This Week's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.customers.each do |customer| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= customer.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.monthly.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </section>
@@ -231,20 +254,20 @@
             <header class="panel-heading text-right bg-light">
               <ul class="nav nav-tabs pull-left">
                 <li class="active">
-                  <a href="#daily" data-toggle="tab">Daily</a>
+                  <a href="#daily-linst" data-toggle="tab">Daily</a>
                 </li>
                 <li class="">
-                  <a href="#weekly" data-toggle="tab">Weekly</a>
+                  <a href="#weekly-linst" data-toggle="tab">Weekly</a>
                 </li>
                 <li class="">
-                  <a href="#monthly" data-toggle="tab">Monthly</a>
+                  <a href="#monthly-linst" data-toggle="tab">Monthly</a>
                 </li>
               </ul>
               <span class="hidden-sm">&nbsp;</span>
             </header>
             <div class="panel-body">
               <div class="tab-content">
-                <div class="tab-pane fade active in" id="daily">
+                <div class="tab-pane fade active in" id="daily-linst">
                   <table class="table table-striped m-b-none">
                     <thead>
                     <tr>
@@ -266,7 +289,7 @@
                     </tbody>
                   </table>
                 </div>
-                <div class="tab-pane fade" id="profile-2">
+                <div class="tab-pane fade" id="weekly-linst">
                   <table class="table table-striped m-b-none">
                     <thead>
                     <tr>
@@ -288,10 +311,35 @@
                     </tbody>
                   </table>
                 </div>
+
+                <div class="tab-pane fade" id="monthly-linst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Land master</th>
+                      <th>Total Installments</th>
+                      <th>This Week's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.land_masters.each do |land_master| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= land_master.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.monthly.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </section>
         </div>
+
+
 
         <div class="col-md-6">
           <section class="panel panel-default">
@@ -299,20 +347,20 @@
             <header class="panel-heading text-right bg-light">
               <ul class="nav nav-tabs pull-left">
                 <li class="active">
-                  <a href="#daily" data-toggle="tab">Daily</a>
+                  <a href="#daily-inv" data-toggle="tab">Daily</a>
                 </li>
                 <li class="">
-                  <a href="#weekly" data-toggle="tab">Weekly</a>
+                  <a href="#weekly-inv" data-toggle="tab">Weekly</a>
                 </li>
                 <li class="">
-                  <a href="#monthly" data-toggle="tab">Monthly</a>
+                  <a href="#monthly-inv" data-toggle="tab">Monthly</a>
                 </li>
               </ul>
               <span class="hidden-sm">&nbsp;</span>
             </header>
             <div class="panel-body">
               <div class="tab-content">
-                <div class="tab-pane fade active in" id="daily">
+                <div class="tab-pane fade active in" id="daily-inv">
                   <table class="table table-striped m-b-none">
                     <thead>
                     <tr>
@@ -330,7 +378,7 @@
                     </tbody>
                   </table>
                 </div>
-                <div class="tab-pane fade" id="profile-2">
+                <div class="tab-pane fade" id="weekly-inv">
                   <table class="table table-striped m-b-none">
                     <thead>
                     <tr>
@@ -340,6 +388,25 @@
                     </thead>
                     <tbody>
                     <% @town.investments.weekly.each do |investment| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= investment.stake_holder.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= investment.amount %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane fade" id="monthly-inv">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Stakeholder</th>
+                      <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.investments.monthly.each do |investment| %>
                         <tr>
                           <td class="text-center"><span class="label label-info"><%= investment.stake_holder.name %></span></td>
                           <td class="text-center"><span class="label label-success"><%= investment.amount %></span></td>
