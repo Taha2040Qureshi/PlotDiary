@@ -19,4 +19,16 @@ class GivenInstallment < ActiveRecord::Base
                    :payment_type => 'withdraw'
     )
   end
+
+  def self.daily(date = Time.now.utc.to_date)
+    where(['created_at >= ? AND created_at < ?', date, date + 1])
+  end
+
+  def self.weekly(date= Time.now.utc.to_date)
+    where(['created_at >= ? AND created_at <= ?', date.beginning_of_week, date.end_of_week])
+  end
+
+  def self.monthly(date= Time.now.utc.to_date)
+    where(['created_at >= ? AND created_at <= ?', date.beginning_of_month, date.end_of_month])
+  end
 end

@@ -36,8 +36,8 @@
                       <span class="easypiechart pos-abt" data-percent="100" data-line-width="4" data-track-Color="#f5f5f5" data-scale-Color="false" data-size="50" data-line-cap='butt' data-animate="3000" data-target="#firers" data-update="5000"></span>
                     </span>
             <a class="clear" href="#">
-              <span class="h3 block m-t-xs"><strong id="firers"></strong></span>
-              <small class="text-muted text-uc">Expense</small>
+              <span class="h3 block m-t-xs"><strong id="firers"></strong><%=@town.plots.count - @town.customers.count if @town.present?%></span>
+              <small class="text-muted text-uc">Remaining Plots</small>
             </a>
           </div>
           <div class="col-sm-6 col-md-3 padder-v b-r b-light lt">
@@ -46,8 +46,8 @@
                       <i class="fa fa-clock-o fa-stack-1x text-white"></i>
                     </span>
             <a class="clear" href="#">
-              <span class="h3 block m-t-xs"><strong></strong></span>
-              <small class="text-muted text-uc">Installment</small>
+              <span class="h3 block m-t-xs"><strong></strong><%= @town.land_masters.count if @town.present? %></span>
+              <small class="text-muted text-uc">Landmasters</small>
             </a>
 
           </div>
@@ -58,35 +58,367 @@
 
 
 
-      <div class="panel panel-primary">
-        <div class="page-header"><h3>General Calculation</h3></div>
-        <div class="panel-body">
-          <div class="form-group">
-            <div id="error"></div>
-            <label for="usr">Total Amount </label>
-            <input type="number" name="totalAmount" class="form-control" id="totalAmount">
-          </div>
-          <div class="form-group">
-            <label for="usr">Amount Paid</label>
-            <input type="number" name="advanceAmount" class="form-control" id="advanceAmount">
-          </div>
-          <div class="form-group">
-            <label for="usr">Remaining Amount</label>
-            <input type="number" name="remainingAmount" class="form-control" id="remainingAmount">
-          </div>
-          <div class="form-group">
-            <label for="usr">Number of installments</label>
-            <input type="number" name="numberOfInstallments" class="form-control" id="numberOfInstallments">
-          </div>
-          <div class="form-group">
-            <button type="button" class="btn btn-primary"  onclick="calculateInstallment();" id="btnCalculate">Calculate</button>
-          </div>
-          <div class="form-group">
-            <label for="usr">Per installment Amount</label>
-            <input type="number" name="PerInstallmentAmount" class="form-control" id="PerInstallmentAmount">
-          </div>
+      <!--<div class="panel panel-primary">-->
+        <!--<div class="page-header"><h3>General Calculation</h3></div>-->
+        <!--<div class="panel-body">-->
+          <!--<div class="form-group">-->
+            <!--<div id="error"></div>-->
+            <!--<label for="usr">Total Amount </label>-->
+            <!--<input type="number" name="totalAmount" class="form-control" id="totalAmount">-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="usr">Amount Paid</label>-->
+            <!--<input type="number" name="advanceAmount" class="form-control" id="advanceAmount">-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="usr">Remaining Amount</label>-->
+            <!--<input type="number" name="remainingAmount" class="form-control" id="remainingAmount">-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="usr">Number of installments</label>-->
+            <!--<input type="number" name="numberOfInstallments" class="form-control" id="numberOfInstallments">-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<button type="button" class="btn btn-primary"  onclick="calculateInstallment();" id="btnCalculate">Calculate</button>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="usr">Per installment Amount</label>-->
+            <!--<input type="number" name="PerInstallmentAmount" class="form-control" id="PerInstallmentAmount">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="row">
+        <div class="col-md-6">
+          <section class="panel panel-default">
+            <header class="panel-heading">Expenses</header>
+            <header class="panel-heading text-right bg-light">
+              <ul class="nav nav-tabs pull-left">
+                <li class="active">
+                  <a href="#daily" data-toggle="tab">Daily</a>
+                </li>
+                <li class="">
+                  <a href="#weekly" data-toggle="tab">Weekly</a>
+                </li>
+                <li class="">
+                  <a href="#monthly" data-toggle="tab">Monthly</a>
+                </li>
+              </ul>
+              <span class="hidden-sm">&nbsp;</span>
+            </header>
+            <div class="panel-body">
+              <div class="tab-content">
+                <div class="tab-pane fade active in" id="daily">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Expense Type</th>
+                      <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.expenses.daily.each do |exp| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= exp.amount %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= exp.status %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= exp.expense_type.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= exp.description %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="profile-2">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Expense Type</th>
+                      <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.expenses.weekly.each do |exp| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= exp.amount %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= exp.status %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= exp.expense_type.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= exp.description %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
+
+        <div class="col-md-6">
+          <section class="panel panel-default">
+            <header class="panel-heading">Customer Installments</header>
+            <header class="panel-heading text-right bg-light">
+              <ul class="nav nav-tabs pull-left">
+                <li class="active">
+                  <a href="#daily-cinst" data-toggle="tab">Daily</a>
+                </li>
+                <li class="">
+                  <a href="#weekly-cinst" data-toggle="tab">Weekly</a>
+                </li>
+                <li class="">
+                  <a href="#monthly-cinst" data-toggle="tab">Monthly</a>
+                </li>
+              </ul>
+              <span class="hidden-sm">&nbsp;</span>
+            </header>
+            <div class="panel-body">
+              <div class="tab-content">
+                <div class="tab-pane fade active in" id="daily-cinst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Total Installments</th>
+                      <th>Today's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.customers.each do |customer| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= customer.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.daily.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="weekly-cinst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Total Installments</th>
+                      <th>This Week's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.customers.each do |customer| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= customer.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.weekly.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane fade" id="monthly-cinst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Total Installments</th>
+                      <th>This Week's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.customers.each do |customer| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= customer.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.monthly.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-md-6">
+          <section class="panel panel-default">
+            <header class="panel-heading">Landmaster Installments</header>
+            <header class="panel-heading text-right bg-light">
+              <ul class="nav nav-tabs pull-left">
+                <li class="active">
+                  <a href="#daily-linst" data-toggle="tab">Daily</a>
+                </li>
+                <li class="">
+                  <a href="#weekly-linst" data-toggle="tab">Weekly</a>
+                </li>
+                <li class="">
+                  <a href="#monthly-linst" data-toggle="tab">Monthly</a>
+                </li>
+              </ul>
+              <span class="hidden-sm">&nbsp;</span>
+            </header>
+            <div class="panel-body">
+              <div class="tab-content">
+                <div class="tab-pane fade active in" id="daily-linst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Land Master</th>
+                      <th>Total Installments</th>
+                      <th>Today's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.land_masters.each do |land_master| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= land_master.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.daily.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="weekly-linst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Land master</th>
+                      <th>Total Installments</th>
+                      <th>This Week's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.land_masters.each do |land_master| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= land_master.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.weekly.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane fade" id="monthly-linst">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Land master</th>
+                      <th>Total Installments</th>
+                      <th>This Week's Given Installments</th>
+                      <th>Remaining Installments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.land_masters.each do |land_master| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= land_master.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.monthly.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+
+        <div class="col-md-6">
+          <section class="panel panel-default">
+            <header class="panel-heading">Investements</header>
+            <header class="panel-heading text-right bg-light">
+              <ul class="nav nav-tabs pull-left">
+                <li class="active">
+                  <a href="#daily-inv" data-toggle="tab">Daily</a>
+                </li>
+                <li class="">
+                  <a href="#weekly-inv" data-toggle="tab">Weekly</a>
+                </li>
+                <li class="">
+                  <a href="#monthly-inv" data-toggle="tab">Monthly</a>
+                </li>
+              </ul>
+              <span class="hidden-sm">&nbsp;</span>
+            </header>
+            <div class="panel-body">
+              <div class="tab-content">
+                <div class="tab-pane fade active in" id="daily-inv">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Stakeholder</th>
+                      <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.investments.daily.each do |investment| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= investment.stake_holder.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= investment.amount %></span></td>
+                          </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="weekly-inv">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Stakeholder</th>
+                      <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.investments.weekly.each do |investment| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= investment.stake_holder.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= investment.amount %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane fade" id="monthly-inv">
+                  <table class="table table-striped m-b-none">
+                    <thead>
+                    <tr>
+                      <th>Stakeholder</th>
+                      <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @town.investments.monthly.each do |investment| %>
+                        <tr>
+                          <td class="text-center"><span class="label label-info"><%= investment.stake_holder.name %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= investment.amount %></span></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
 
     </section>
