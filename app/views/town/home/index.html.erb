@@ -190,9 +190,9 @@
                     <% @town.customers.each do |customer| %>
                         <tr>
                           <td class="text-center"><span class="label label-info"><%= customer.name %></span></td>
-                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments if customer.submit_installments.first %></span></td>
                           <td class="text-center"><span class="label label-info"><%= customer.submit_installments.daily.count %></span></td>
-                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count if customer.submit_installments.first%></span></td>
                         </tr>
                     <% end %>
                     </tbody>
@@ -212,9 +212,9 @@
                     <% @town.customers.each do |customer| %>
                         <tr>
                           <td class="text-center"><span class="label label-info"><%= customer.name %></span></td>
-                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments if customer.submit_installments.first%></span></td>
                           <td class="text-center"><span class="label label-info"><%= customer.submit_installments.weekly.count %></span></td>
-                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count if customer.submit_installments.first%></span></td>
                         </tr>
                     <% end %>
                     </tbody>
@@ -235,9 +235,9 @@
                     <% @town.customers.each do |customer| %>
                         <tr>
                           <td class="text-center"><span class="label label-info"><%= customer.name %></span></td>
-                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= customer.submit_installments.first.installment.total_number_of_installments if customer.submit_installments.first%></span></td>
                           <td class="text-center"><span class="label label-info"><%= customer.submit_installments.monthly.count %></span></td>
-                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= customer.submit_installments.first.installment.total_number_of_installments - customer.submit_installments.count if customer.submit_installments.first%></span></td>
                         </tr>
                     <% end %>
                     </tbody>
@@ -281,9 +281,9 @@
                     <% @town.land_masters.each do |land_master| %>
                         <tr>
                           <td class="text-center"><span class="label label-info"><%= land_master.name %></span></td>
-                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments if land_master.given_installments.first %></span></td>
                           <td class="text-center"><span class="label label-info"><%= land_master.given_installments.daily.count %></span></td>
-                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count if land_master.given_installments.first%></span></td>
                         </tr>
                     <% end %>
                     </tbody>
@@ -303,9 +303,9 @@
                     <% @town.land_masters.each do |land_master| %>
                         <tr>
                           <td class="text-center"><span class="label label-info"><%= land_master.name %></span></td>
-                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments if land_master.given_installments.first%></span></td>
                           <td class="text-center"><span class="label label-info"><%= land_master.given_installments.weekly.count %></span></td>
-                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count if land_master.given_installments.first%></span></td>
                         </tr>
                     <% end %>
                     </tbody>
@@ -326,9 +326,9 @@
                     <% @town.land_masters.each do |land_master| %>
                         <tr>
                           <td class="text-center"><span class="label label-info"><%= land_master.name %></span></td>
-                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments %></span></td>
+                          <td class="text-center"><span class="label label-success"><%= land_master.given_installments.first.installment.total_number_of_installments if land_master.given_installments.first%></span></td>
                           <td class="text-center"><span class="label label-info"><%= land_master.given_installments.monthly.count %></span></td>
-                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count %></span></td>
+                          <td class="text-center"><span class="label label-info"><%= land_master.given_installments.first.installment.total_number_of_installments - land_master.given_installments.count if land_master.given_installments.first%></span></td>
                         </tr>
                     <% end %>
                     </tbody>
@@ -438,7 +438,7 @@
 
       if(advanceAmount >= totalAmount)
       {
-          $('#error').append("Adance amount can't be greater then  OR  equal total amount ");
+          $('#error').append("Advance amount can't be greater then  OR  equal total amount ");
           return;
       }
       if(totalAmount == null)
