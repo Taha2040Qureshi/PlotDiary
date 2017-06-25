@@ -10,16 +10,27 @@ class Town::GivenInstallmentsController < Town::BaseController
   end
 
   def create
-    @given_installment = current_town.given_installments.new(given_installments_params)
-    @given_installment.town_id = current_user.town.id
-    if @given_installment.valid?
-      @given_installment.save
-      flash[:success] = "Stake Holder has been successfully added"
+    number = number_of_installment[:number].to_i
+    saved = false
+
+    number.times { |i|
+      @given_installment = current_town.given_installments.new(given_installments_params)
+      @given_installment.town_id = current_user.town.id
+      @given_installment.installment_id = LandMaster.find(@given_installment.land_master_id).installment_id
+      if @given_installment.valid?
+        @given_installment.save
+        saved = true
+        flash[:success] = "Installment Submitted"
+      else
+        flash[:errors] = @given_installment.errors.full_messages
+      end
+    }
+
+    if saved
       return redirect_to town_given_installments_path
     else
-      flash[:errors] = @given_installment.errors.full_messages
+      render :new
     end
-    render :new
   end
 
   def edit
@@ -48,10 +59,18 @@ class Town::GivenInstallmentsController < Town::BaseController
     redirect_to :back
   end
 
+  def get_installment_details
+    @land_master = LandMaster.find(params[:land_master_id])
+  end
+
   private
 
   def given_installments_params
     params.require(:given_installment).permit(:land_master_id, :town_id, :installment_id, :submit_date)
+  end
+
+  def number_of_installment
+    params.require(:number_of_installment).permit(:number)
   end
 
 end

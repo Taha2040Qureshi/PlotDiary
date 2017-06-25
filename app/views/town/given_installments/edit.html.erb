@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                   <label class=" control-label">Installment Type</label>
-                  <%=f.collection_select :installment_id, current_user.town.installments.all,:id,:name,{},{:class=>"form-control"}%>
+                 <%= f.text_field :submit_date, :class=>"combodate form-control" ,"data-format"=>"YYYY-MM-DD","data-template"=>"D  MMM  YYYY"%>
                 </div>
 
                 <div class="form-group">

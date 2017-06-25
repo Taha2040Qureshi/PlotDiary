@@ -6,6 +6,7 @@
         <header class="panel-heading" style="overflow:auto;background:#FFF;">
           <h4 style="margin-bottom:0px;"> <%=@title%> </h4>
           <div class="pull-right">
+            <%=link_to "Show Investment Amounts",town_investments_path,:class=>"btn btn-info"%>
             <%=link_to "ADD Investment Amount",new_town_investment_path,:class=>"btn btn-info"%>
           </div>
           <%= render :partial =>"shared/flash_messages"%>

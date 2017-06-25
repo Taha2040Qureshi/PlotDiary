@@ -37,6 +37,7 @@
 //= require rails.validations.js
 //= require installments.js
 //= require submit_installment.js
+//= require given_installment.js
 
 
 

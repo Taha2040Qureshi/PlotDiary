@@ -13,7 +13,6 @@ class Town::SubmitInstallmentsController < Town::BaseController
     number = number_of_installment[:number].to_i
     saved = false
     number.times { |i|
-      puts "===" * 10
       @submit_installment = current_town.submit_installments.new(submit_installment_params)
       @submit_installment.town_id = current_user.town.id
       @submit_installment.installment_id = Customer.find(@submit_installment.customer_id).installment_id
@@ -60,7 +59,6 @@ class Town::SubmitInstallmentsController < Town::BaseController
 
   def get_installment_details
     @customer = Customer.find(params[:customer_id])
-    puts @customer.inspect
   end
 
   private

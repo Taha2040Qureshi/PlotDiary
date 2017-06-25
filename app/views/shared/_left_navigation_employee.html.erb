@@ -286,6 +286,36 @@
           </ul>
         </li>
 
+        <li <%if is_active('given_installments')%>class="active"<%end%>>
+          <a href="#layout">
+            <i class="fa fa-dollar icon">
+              <b class="bg-warning"></b>
+            </i>
+
+        <span class="pull-right">
+               <%=raw is_active('given_installments') ? '<i class="fa text fa-angle-right"></i>' : '<i class="fa fa-angle-down text"></i>'%>
+                  <!--<i class="fa fa-angle-down text"></i>-->
+                  <!--<i class="fa fa-angle-up text-active"></i>-->
+              </span>
+            <span>GIVE INSTALLMENT</span>
+          </a>
+          <ul class="nav lt">
+            <li>
+              <a href="<%=new_town_given_installment_path%>" >
+                <i class="fa fa-angle-right"></i>
+                <span>Submit New</span>
+              </a>
+            </li>
+            <li>
+              <a href="<%=town_given_installments_path%>" >
+                <i class="fa fa-angle-right"></i>
+                <span>Manage All</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
 
       </ul>
       </li>

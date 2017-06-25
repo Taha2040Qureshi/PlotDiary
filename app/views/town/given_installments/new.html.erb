@@ -5,24 +5,36 @@
         <%= render :partial =>"shared/flash_messages"%>
         <section class="panel panel-default">
           <header class="panel-heading" style="background:#FFF;">
-            <h3 style="color:#717171;">Add Given to Land Master Installment </h3>
+            <h3 style="color:#717171;">Land Master Installment Submission </h3>
           </header>
           <div class="panel-body">
             <%= form_for @given_installment,:url=>town_given_installments_path ,:html =>{:class=>"panel-body wrapper-lg"} do |f|  %>
 
                 <div class="form-group">
-                  <label class=" control-label">Land Master</label>
-                  <%=f.collection_select :land_master_id, current_user.town.land_masters.all,:id,:name,{},{:class=>"form-control"}%>
+                  <label class=" control-label">Customer</label>
+                  <%=f.collection_select :land_master_id, current_user.town.land_masters.all,:id,:name,{:prompt => "Please select a Land Master"},{:class=>"form-control select-customer"}%>
                 </div>
 
                 <div class="form-group">
-                  <label class=" control-label">Installment Type</label>
-                  <%=f.collection_select :installment_id, current_user.town.installments.all,:id,:name,{},{:class=>"form-control"}%>
+                  <label class="col-md-3 control-label customer-info">Installment Amount:</label>
+                  <label class="col-md-3 control-label installment_amount customer-info"> 0 </label>
+                  <label class="control-label customer-info">Remaining Installments:</label>
+                  <label class="control-label rem-installment customer-info"> 0 </label>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label "> Number of Installments: </label>
+                  <input class="form-control no-of-installment number-input" type="number" name="number_of_installment[number]" id="number_of_installment_number">
+                </div>
+
+                <div class="form-group">
+                  <label class=" control-label customer-info">Total Amount:</label>
+                  <label class=" control-label total-amount customer-info"> 0 </label>
                 </div>
 
                 <div class="form-group">
                   <label class=" control-label">Submission Date</label>
-                    <%= f.text_field :submit_date, :class=>"combodate form-control" ,"data-format"=>"YYYY-MM-DD HH:mm","data-template"=>"D  MMM  YYYY"%>
+                    <%= f.date_field :submit_date, :class=>"form-control  input-lg  date-picker" %>
                 </div>
 
                 <div class="form-group">

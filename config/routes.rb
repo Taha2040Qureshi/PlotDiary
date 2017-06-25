@@ -26,7 +26,11 @@ Rails.application.routes.draw do
         get 'get_installment_details' => "submit_installments#get_installment_details"
       end
     end
-    resources :given_installments
+    resources :given_installments do
+      collection do
+        get 'get_installment_details_land_master' => "given_installments#get_installment_details"
+      end
+    end
     resources :stocks
   end
 

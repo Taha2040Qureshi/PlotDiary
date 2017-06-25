@@ -3,6 +3,7 @@ class LandMaster < ActiveRecord::Base
   belongs_to :address, :dependent => :destroy
   belongs_to :town
   belongs_to :installment, :dependent => :destroy
+  has_many :given_installments
 
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :installment
