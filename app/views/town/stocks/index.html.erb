@@ -16,7 +16,7 @@
             <thead>
             <tr>
               <th style="font-weight:500;">Stock Name</th>
-              <th style="font-weight:500;">Total Price</th>
+              <!--<th style="font-weight:500;">Total Price</th>-->
               <th style="font-weight:500;">Created at</th>
               <th style="font-weight:500;">Updated at</th>
               <th style="font-weight:500;">Action</th>
@@ -26,7 +26,7 @@
             <%@stocks.each do |e|%>
                 <tr>
                   <td><%=e.name%></td>
-                  <td><%=e.expense.amount%></td>
+                  <!--<td><%#=e.expense.amount%></td>-->
                   <td><%=e.created_at%></td>
                   <td><%=e.updated_at%></td>
                   <td class="text-right">

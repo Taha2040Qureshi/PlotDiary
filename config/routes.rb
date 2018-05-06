@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :maps
+  resources :maps
+  resources :maps
+  get 'plots/map'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, :skip => [:sessions]
@@ -20,6 +25,7 @@ Rails.application.routes.draw do
     resources :investments
     resources :land_masters
     resources :plots
+    get 'plots/map'
     resources :stake_holders
     resources :submit_installments do
       collection do
@@ -33,5 +39,4 @@ Rails.application.routes.draw do
     end
     resources :stocks
   end
-
 end

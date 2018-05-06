@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615162658) do
+ActiveRecord::Schema.define(version: 20170706035312) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -139,6 +139,15 @@ ActiveRecord::Schema.define(version: 20170615162658) do
     t.string   "cnic",           limit: 255
   end
 
+  create_table "maps", force: :cascade do |t|
+    t.float    "latitude",   limit: 24
+    t.float    "longitude",  limit: 24
+    t.string   "address",    limit: 255
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "payments", force: :cascade do |t|
     t.float    "amount",          limit: 24
     t.datetime "date"
@@ -162,9 +171,10 @@ ActiveRecord::Schema.define(version: 20170615162658) do
     t.float    "length",      limit: 24
     t.float    "width",       limit: 24
     t.integer  "town_id",     limit: 4
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.integer  "status",      limit: 4,  default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "status",      limit: 4,   default: 0
+    t.string   "street",      limit: 255
   end
 
   create_table "stake_holders", force: :cascade do |t|

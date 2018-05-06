@@ -8,4 +8,5 @@ class Plot < ActiveRecord::Base
   validates :area, presence: true
   validates :length, presence: true
   validates :width, presence: true
+  validates :street, presence: true
 end

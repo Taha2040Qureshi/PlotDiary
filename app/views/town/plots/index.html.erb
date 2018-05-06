@@ -16,6 +16,7 @@
             <thead>
             <tr>
               <th style="font-weight:500;">Plot Number</th>
+              <th style="font-weight:500;">Street Number</th>
               <th style="font-weight:500;">Total Price </th>
               <th style="font-weight:500;">Area</th>
               <th style="font-weight:500;">Length</th>
@@ -29,6 +30,7 @@
             <%@plots.each do |e|%>
                 <tr>
                   <td><%=e.plot_number%></td>
+                  <td><%=e.street%></td>
                   <td><%=e.total_price%></td>
                   <td><%=e.area%></td>
                   <td><%=e.length%></td>

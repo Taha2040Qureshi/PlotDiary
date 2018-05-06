@@ -33,7 +33,7 @@ class Town::PlotsController < Town::BaseController
   private
 
   def plot_params
-    params.require(:plot).permit(:plot_number,:towns_id, :total_price, :area, :length, :width)
+    params.require(:plot).permit(:plot_number,:towns_id, :total_price, :area, :length, :width , :street)
   end
 
 end

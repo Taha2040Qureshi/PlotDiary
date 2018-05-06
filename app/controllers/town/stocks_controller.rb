@@ -15,7 +15,7 @@ class Town::StocksController < Town::BaseController
 
     expense = Expense.new(expense_params[:expense])
     expense.town_id = current_user.town.id
-    expense.expense_type_id = expense_type.id
+    expense.expense_type_id = expense_type
     expense.save
 
     @stock = current_town.stocks.new(stock_params)
